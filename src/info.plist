@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.apple.alfred.workflow.enb</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>1D2A8C78-4634-41F0-BBA4-C3518FC43126</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D2D98FFA-2F20-4908-B0DD-99D0FAFF5ED9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2E7B16C7-511B-4699-8516-3DA6A47C68EC</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy URL to Clipboard</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E3E32FA2-0B89-4651-BE92-F4762FB53A3D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1D2A8C78-4634-41F0-BBA4-C3518FC43126</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Acidham</string>
+	<key>description</key>
+	<string>Evernote bookmarks</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Evernote Bookmarks</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>esb</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Search in Evernote....</string>
+				<key>script</key>
+				<string>on run	set theQuery to "{query}"	--set theQuery to "ppc"	set theUrlTag to do shell script "echo $urlTag"	--set theUrlTag to "URL"	set xml to "&lt;?xml version=\"1.0\"?&gt;&lt;items&gt;"	tell application "Evernote"				set theResults to find notes "intitle:" &amp; theQuery &amp; " tag:" &amp; theUrlTag		set noOutput to true		repeat with v in theResults			set theTitle to title of v			set theTitle to my StringReplace(theTitle, "&amp;", "&amp;amp;")			set theHtml to HTML content of v as text			set theHtml to my StringSplit(theHtml, "&lt;")			set theAnchor to {}			repeat with h in theHtml				if h contains "href=" then set theAnchor to theAnchor &amp; h			end repeat			set theNumberOfLinks to count of theAnchor			set i to 1			repeat with anc in theAnchor				if theNumberOfLinks is greater than 1 then					set theCounterText to "(" &amp; i &amp; ")"				else					set theCounterText to ""				end if				if anc contains "http://" or anc contains "https://" then					set theUrl to text (offset of "http" in anc) thru -1 of anc					if theUrl contains "\"" then set theUrl to text 1 thru ((offset of "\"" in theUrl) - 1) of theUrl					set xml to xml &amp; "&lt;item arg=\"" &amp; theUrl &amp; "\" valid=\"yes\"&gt;&lt;title&gt;" &amp; theTitle &amp; " " &amp; theCounterText &amp; "&lt;/title&gt;&lt;subtitle&gt;" &amp; theUrl &amp; "&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;quicklookurl&gt;" &amp; theUrl &amp; "&lt;/quicklookurl&gt;&lt;/item&gt;"					set noOutput to false					set i to i + 1				end if			end repeat		end repeat		if noOutput then			set xml to xml &amp; "&lt;item arg=\"\" valid=\"no\"&gt;&lt;title&gt;Nohting found for Query: " &amp; theQuery &amp; "&lt;/title&gt;&lt;subtitle&gt;...try another query&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;"		end if			end tell		set xml to xml &amp; "&lt;/items&gt;"	end run(* ================================================================
+FUNTION: Splits a String with a given delimiter
+RETURNS: List of String  (List)
+==================================================================*)on StringSplit(theString, theDelimiter)	-- save delimiters to restore old settings	set oldDelimiters to AppleScript's text item delimiters	-- set delimiters to delimiter to be used	set AppleScript's text item delimiters to theDelimiter	-- create the array	set theArray to every text item of theString	-- restore the old setting	set AppleScript's text item delimiters to oldDelimiters	-- return the result	return theArrayend StringSplit(* ==============================================
+FUNCTION: Function to Replace a text within a string
+RETURNS: String 
+==============================================*)on StringReplace(theText, theOldString, theNewString) -- String(String, String, String)	set theCommand to "echo '" &amp; theText &amp; "' |sed 's/" &amp; theOldString &amp; "/" &amp; theNewString &amp; "/g'"	set theNewText to do shell script theCommand	return theNewTextend StringReplace</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search Evernote Bookmarks</string>
+				<key>type</key>
+				<integer>6</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1D2A8C78-4634-41F0-BBA4-C3518FC43126</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>D2D98FFA-2F20-4908-B0DD-99D0FAFF5ED9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>subtext</key>
+				<string>Search in Evernote Bookmarks</string>
+				<key>text</key>
+				<string>Evernote Bookmarks</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.fallback</string>
+			<key>uid</key>
+			<string>E3E32FA2-0B89-4651-BE92-F4762FB53A3D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2E7B16C7-511B-4699-8516-3DA6A47C68EC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Find URL in Evernote notes titles (inline) tagged with URL Tag. The URL tag can be changed in Workflow Preferences.
+
+Usage:
+enb &lt;query&gt;
+- Shift for quicklook url
+- CMD to copy to clipboard</string>
+	<key>uidata</key>
+	<dict>
+		<key>1D2A8C78-4634-41F0-BBA4-C3518FC43126</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>2E7B16C7-511B-4699-8516-3DA6A47C68EC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
+		<key>D2D98FFA-2F20-4908-B0DD-99D0FAFF5ED9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>E3E32FA2-0B89-4651-BE92-F4762FB53A3D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>urlTag</key>
+		<string>URL</string>
+	</dict>
+	<key>version</key>
+	<string>1.2</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
