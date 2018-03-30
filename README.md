@@ -8,3 +8,6 @@ Find URLs in Evernote notes titles (inline) tagged with a URL Tag. The URL tag c
 
 ## Requires
 * Evernote installed 
+
+## Alfred Forum
+https://www.alfredforum.com/topic/10235-evernote-bookmarks
