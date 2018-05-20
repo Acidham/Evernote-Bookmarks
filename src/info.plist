@@ -182,7 +182,7 @@ RETURNS: String
 readonly remote_info_plist="https://raw.githubusercontent.com/Acidham/Evernote-Bookmarks/master/src/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/Acidham/Evernote-Bookmarks/master/Evernote%20Bookmarks.alfredworkflow"
 readonly download_type='direct'
-readonly frequency_check='0'
+readonly frequency_check='4'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
