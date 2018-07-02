@@ -293,7 +293,7 @@ fi</string>
 
 Usage:
 
-enb &lt;query&gt;
+esb &lt;query&gt;
 - Shift for quicklook url
 - CMD to copy to clipboard
 - ALT to open note in a new Evernote window</string>
@@ -352,7 +352,7 @@ enb &lt;query&gt;
 		<string>URL</string>
 	</dict>
 	<key>version</key>
-	<string>1.4.3</string>
+	<string>1.4.4</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

@@ -2,7 +2,7 @@
 Find URLs in Evernote notes titles (inline) tagged with a URL Tag. The URL tag can be changed in Workflow Preferences.
 
 ## Usage:
-* ***enb*** \<*query>*
+* ***esb*** \<*query>*
 - `SHIFT` for quicklook url
 - `CMD` to copy to clipboard
 - `ALT` opens the Note in a new Evernote window
