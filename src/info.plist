@@ -24,9 +24,9 @@
 				<key>destinationuid</key>
 				<string>2E7B16C7-511B-4699-8516-3DA6A47C68EC</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Copy URL to Clipboard</string>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -34,7 +34,7 @@
 				<key>destinationuid</key>
 				<string>7D6F15B4-FC15-4E54-A2B3-41B4A81BBE4A</string>
 				<key>modifiers</key>
-				<integer>524288</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -352,7 +352,7 @@ esb &lt;query&gt;
 		<string>URL</string>
 	</dict>
 	<key>version</key>
-	<string>1.4.4</string>
+	<string>1.5</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
